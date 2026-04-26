@@ -1,0 +1,47 @@
+name: Analisis Estatico y Seguridad
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: "Path to the Terraform code"
+        required: true
+        type: string
+
+jobs:
+
+  tflint:
+    name: Analisis Estatico - TFLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: Inicializar TFLint
+        run: tflint --init
+        working-directory: ${{ inputs.path }}
+
+      - name: Ejecutar TFLint
+        run: tflint --format compact
+        working-directory: ${{ inputs.path }}
+
+  checkov:
+    name: Analisis de Seguridad - Checkov
+    runs-on: ubuntu-latest
+    needs: tflint
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Checkov
+        run: pip install checkov
+
+      - name: Ejecutar Checkov
+        run: checkov -d ${{ inputs.path }} --framework terraform
