@@ -16,7 +16,7 @@ jobs:
   validacion:
     name: Llamar validacion Terraform
     needs: analisis
-    uses: ./.github/workflows/terraform-validate.yaml
+    uses: ./.github/workflows/validate.yaml
     with:
       path: terraform/
 
