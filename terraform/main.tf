@@ -18,7 +18,6 @@ resource "aws_default_security_group" "AUY1105-duocapp-default-sg" {
 
 data "aws_caller_identity" "current" {}
 
-data "aws_caller_identity" "current" {}
 
 resource "aws_kms_key" "AUY1105-duocapp-kms" {
   description             = "KMS key para encriptar logs de VPC Flow Logs"
