@@ -9,13 +9,13 @@ jobs:
 
   analisis:
     name: Llamar analisis estatico y seguridad
-    uses: ./.github/workflows/tflint-checkov.yml
+    uses: ./.github/workflows/tflint-checkov.yaml
     with:
       path: terraform/
 
   validacion:
     name: Llamar validacion Terraform
     needs: analisis
-    uses: ./.github/workflows/validate.yml
+    uses: ./.github/workflows/validate.yaml
     with:
       path: terraform/
