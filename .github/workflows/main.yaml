@@ -1,0 +1,21 @@
+name: Terraform CI - Pipeline Central
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  analisis:
+    name: Llamar analisis estatico y seguridad
+    uses: ./.github/workflows/tflint-checkov.yml
+    with:
+      path: terraform/
+
+  validacion:
+    name: Llamar validacion Terraform
+    needs: analisis
+    uses: ./.github/workflows/terraform-validate.yml
+    with:
+      path: terraform/
