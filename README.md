@@ -112,4 +112,4 @@ El workflow se activa automáticamente en cada Pull Request hacia main y ejecuta
 
 | Nombre | Usuario GitHub |
 |---|---|
-| Integrante | Oscar Neira |
+| Integrante | Oscar Neira | Brandon Figueroa | Matias Araya |
